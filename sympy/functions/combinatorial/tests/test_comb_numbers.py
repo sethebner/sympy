@@ -98,6 +98,10 @@ def test_bell():
     m = Symbol('m', integer=True)
     assert bell(-1).evalf() == bell(m).rewrite(Sum).evalf(subs={m: -1})
 
+    # issue 9184
+    n = Dummy('n')
+    assert bell(n).limit(n, S.Infinity) == S.Infinity
+    assert bell(oo) == S.Infinity
 
 def test_harmonic():
     n = Symbol("n")
